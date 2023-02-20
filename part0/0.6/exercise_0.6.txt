@@ -1,0 +1,17 @@
+title Fullstack Open Exercise 0.6 by Lewis Won
+actor User
+participant Browser
+participant Server
+
+User->Browser: Clicks on text field 
+User->Browser: Types in text field
+User->Browser: Clicks 'send' button
+
+note right of Browser: The browser adds it to the notes list, rerenders the note list on the page.
+Browser->>Server: POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+activate Server
+Server-->>Browser: Status Code 201
+deactivate Server
+
+
+    
