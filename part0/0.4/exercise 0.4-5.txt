@@ -1,0 +1,37 @@
+title Fullstack Open Exercise 0.4 by Lewis Won
+actor User
+participant Browser
+participant Server
+
+User->Browser: Clicks on text field 
+User->Browser: Types in text field
+User->Browser: Clicks 'send' button
+Browser->>Server: POST https://fullstack-exampleapp.herokuapp.com/new_note
+activate Server
+Server-->>Browser: Status Code 302, i.e. URL redirect
+deactivate Server
+
+Browser->>Server: GET https://studies.cs.helsinki.fi/exampleapp/notes
+activate Server
+Server-->>Browser: HTML document
+deactivate Server
+    
+Browser->>Server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+activate Server
+Server-->>Browser: the css file
+deactivate Server
+    
+Browser->>Server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+activate Server
+Server-->>Browser: the JavaScript file
+deactivate Server
+
+    
+note right of Browser: The browser starts executing the JavaScript code that fetches the JSON from the server
+    
+Browser->>Server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+activate Server
+Server-->>Browser: [{ "content": "HTML is easy", "date": "2023-1-1" }, ... ]
+deactivate Server
+
+note right of Browser: The browser executes the callback function that renders the notes 
